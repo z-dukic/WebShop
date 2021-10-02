@@ -16,7 +16,7 @@ import javax.persistence.OneToMany;
  * @author PC
  */
 @Entity
-public class ShoppingCart extends Product {
+public class ShoppingCart extends EntityId {
 
     private String brojRacuna;
 

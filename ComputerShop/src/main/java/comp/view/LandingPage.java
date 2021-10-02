@@ -11,6 +11,7 @@ import comp.model.Inventory;
 import comp.model.ShoppingCart;
 import comp.util.ControllerException;
 import java.math.BigDecimal;
+import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
@@ -43,7 +44,6 @@ public class LandingPage extends javax.swing.JFrame {
 
         lstEntity.setModel(h);
     }
-    
 
     private void loadDataCart() { //a1
 
@@ -59,7 +59,7 @@ public class LandingPage extends javax.swing.JFrame {
 
     public void setValueInEntity() {
         var s = controller.getModelEntity();
-       // s.setName(( );
+        // s.setName(( );
     }
 
     /**
@@ -287,6 +287,8 @@ public class LandingPage extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btnSkipToInventoryMouseClicked
 
+   
+    
     private void lstEntityValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstEntityValueChanged
         if (evt.getValueIsAdjusting() || lstEntity.getSelectedValue() == null) {
             return;
@@ -297,13 +299,19 @@ public class LandingPage extends javax.swing.JFrame {
         txtSKU.setText(String.valueOf(s.getSku()));
         txtPrice.setText(String.valueOf(s.getPrice()));
         
-          if (evt.getValueIsAdjusting() || lstCart.getSelectedValue() == null) {
+
+        if (evt.getValueIsAdjusting() || lstCart.getSelectedValue() == null) {
             return;
         }
-          controller.setModelEntity(lstEntity.getSelectedValue());
-          
+        cart.setModelEntity(lstCart.getSelectedValue());
+        var h = cart.getModelEntity();
+        txtProductName.setText(h.getProduct().getName());
+        txtSKU.setText(String.valueOf(h.getProduct().getSku()));
+        txtPrice.setText(String.valueOf(h.getProduct().getPrice()));
         
-    
+        
+
+
     }//GEN-LAST:event_lstEntityValueChanged
 
     private void btnTraziMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTraziMouseClicked
@@ -327,7 +335,6 @@ public class LandingPage extends javax.swing.JFrame {
             return;
         }
 
-        
         var e = cart.getModelEntity();
 
 
@@ -343,7 +350,7 @@ public class LandingPage extends javax.swing.JFrame {
         } catch (ControllerException ex) {
             JOptionPane.showMessageDialog(getRootPane(), ex.getMessage());
         }
-        
+
         if (controller.getModelEntity() == null) {
             JOptionPane.showMessageDialog(getRootPane(), "First you must pick the item you want to change.");
             return;
@@ -355,10 +362,10 @@ public class LandingPage extends javax.swing.JFrame {
         } catch (ControllerException ex) {
             JOptionPane.showMessageDialog(getParent(), ex.getMessage());
         }
-        
+
     }//GEN-LAST:event_btnAddToCartMouseClicked
 
-        public void setValueInUpdate(){
+    public void setValueInUpdate() {
         var s = controller.getModelEntity();
         s.setName(txtProductName.getText());
         try {
@@ -374,30 +381,29 @@ public class LandingPage extends javax.swing.JFrame {
             return;
         }
         try {
-            s.setAvailableProducts( s.getAvailableProducts() - Integer.parseInt(txtQuantity.getText()));
+            s.setAvailableProducts(s.getAvailableProducts() - Integer.parseInt(txtQuantity.getText()));
         } catch (Exception e) {
             JOptionPane.showMessageDialog(getParent(), "Quantity must be a positive whole number.");
             return;
-            
+
         }
         loadDataCart();
-    
+
     }
-    
+
     private void btnRemoveItemsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRemoveItemsMouseClicked
-        if(cart.getModelEntity()==null){
-           JOptionPane.showMessageDialog(getRootPane(), "First you have to pick an item you want to remove from your cart.");
-           return;
-       }
+        if (cart.getModelEntity() == null) {
+            JOptionPane.showMessageDialog(getRootPane(), "First you have to pick an item you want to remove from your cart.");
+            return;
+        }
         try {
             cart.delete();
             loadDataCart();
         } catch (ControllerException ex) {
             JOptionPane.showMessageDialog(getRootPane(), ex.getMessage());
         }
-        
-        
-        
+
+
     }//GEN-LAST:event_btnRemoveItemsMouseClicked
 
     /**
