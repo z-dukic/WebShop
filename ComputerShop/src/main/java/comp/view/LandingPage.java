@@ -10,6 +10,7 @@ import comp.controller.ShoppingCartController;
 import comp.model.Inventory;
 import comp.model.ShoppingCart;
 import comp.util.ControllerException;
+import java.math.BigDecimal;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
@@ -29,11 +30,11 @@ public class LandingPage extends javax.swing.JFrame {
         initComponents();
         cart = new ShoppingCartController();
         controller = new InventoryController();
-        loadDataInventory();
-        loadDataCart();
+        loadDataInventory(); //a2
+        loadDataCart(); //a1
     }
 
-    private void loadDataInventory() {
+    private void loadDataInventory() { //a2
         DefaultListModel<Inventory> h = new DefaultListModel<>();
 
         controller.read().forEach(s -> {
@@ -42,8 +43,9 @@ public class LandingPage extends javax.swing.JFrame {
 
         lstEntity.setModel(h);
     }
+    
 
-    private void loadDataCart() {
+    private void loadDataCart() { //a1
 
         DefaultListModel<ShoppingCart> h = new DefaultListModel<>();
 
@@ -57,7 +59,7 @@ public class LandingPage extends javax.swing.JFrame {
 
     public void setValueInEntity() {
         var s = controller.getModelEntity();
-
+       // s.setName(( );
     }
 
     /**
@@ -76,13 +78,21 @@ public class LandingPage extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         lstEntity = new javax.swing.JList<>();
         jLabel3 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
+        btnAddToCart = new javax.swing.JButton();
         btnTrazi = new javax.swing.JButton();
         txtCondition = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        btnFinish = new javax.swing.JButton();
         btnRemoveItems = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         lstCart = new javax.swing.JList<>();
+        txtProductName = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        txtSKU = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        txtPrice = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        txtQuantity = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
 
         jLabel2.setText("jLabel2");
 
@@ -109,10 +119,10 @@ public class LandingPage extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setText("Catalog:");
 
-        jButton3.setText("Add to cart");
-        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnAddToCart.setText("Add to cart");
+        btnAddToCart.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton3MouseClicked(evt);
+                btnAddToCartMouseClicked(evt);
             }
         });
 
@@ -134,10 +144,10 @@ public class LandingPage extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Finish");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnFinish.setText("Finish");
+        btnFinish.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnFinishActionPerformed(evt);
             }
         });
 
@@ -156,6 +166,20 @@ public class LandingPage extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(lstCart);
 
+        txtProductName.setEditable(false);
+
+        jLabel5.setText("Name of product:");
+
+        txtSKU.setEditable(false);
+
+        jLabel6.setText("SKU:");
+
+        txtPrice.setEditable(false);
+
+        jLabel7.setText("Price: ");
+
+        jLabel8.setText("Quantity:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -167,21 +191,42 @@ public class LandingPage extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnAddToCart, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(txtCondition, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnTrazi, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(249, 249, 249)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(txtCondition, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(btnTrazi, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(249, 249, 249))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(38, 38, 38)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtSKU, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtProductName, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 120, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnFinish, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jLabel4)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -200,7 +245,24 @@ public class LandingPage extends javax.swing.JFrame {
                             .addComponent(btnTrazi)
                             .addComponent(txtCondition, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(11, 11, 11)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(31, 31, 31)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtProductName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtSKU, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel8))
+                        .addGap(2, 2, 2))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap(135, Short.MAX_VALUE)
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -209,9 +271,9 @@ public class LandingPage extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnRemoveItems)
                         .addGap(40, 40, 40)
-                        .addComponent(jButton1)))
+                        .addComponent(btnFinish)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnAddToCart, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
                 .addComponent(btnSkipToInventory))
         );
@@ -231,7 +293,16 @@ public class LandingPage extends javax.swing.JFrame {
         }
         controller.setModelEntity(lstEntity.getSelectedValue());
         var s = controller.getModelEntity();
-
+        txtProductName.setText(s.getName());
+        txtSKU.setText(String.valueOf(s.getSku()));
+        txtPrice.setText(String.valueOf(s.getPrice()));
+        
+          if (evt.getValueIsAdjusting() || lstCart.getSelectedValue() == null) {
+            return;
+        }
+          controller.setModelEntity(lstEntity.getSelectedValue());
+          
+        
     
     }//GEN-LAST:event_lstEntityValueChanged
 
@@ -247,9 +318,9 @@ public class LandingPage extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtConditionActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnFinishActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinishActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnFinishActionPerformed
 
     private void lstCartValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstCartValueChanged
         if (evt.getValueIsAdjusting() || lstCart.getSelectedValue() == null) {
@@ -262,17 +333,57 @@ public class LandingPage extends javax.swing.JFrame {
 
     }//GEN-LAST:event_lstCartValueChanged
 
-    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+    private void btnAddToCartMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddToCartMouseClicked
         cart.setModelEntity(new ShoppingCart());
         setValueInEntity();
+        loadDataCart();
         try {
             cart.create();
             loadDataCart();
         } catch (ControllerException ex) {
             JOptionPane.showMessageDialog(getRootPane(), ex.getMessage());
         }
-    }//GEN-LAST:event_jButton3MouseClicked
+        
+        if (controller.getModelEntity() == null) {
+            JOptionPane.showMessageDialog(getRootPane(), "First you must pick the item you want to change.");
+            return;
+        }
+        setValueInUpdate();
+        try {
+            controller.update();
+            loadDataCart();
+        } catch (ControllerException ex) {
+            JOptionPane.showMessageDialog(getParent(), ex.getMessage());
+        }
+        
+    }//GEN-LAST:event_btnAddToCartMouseClicked
 
+        public void setValueInUpdate(){
+        var s = controller.getModelEntity();
+        s.setName(txtProductName.getText());
+        try {
+            s.setSku(Integer.parseInt(txtSKU.getText()));
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(getParent(), "SKU must be a whole");
+            return;
+        }
+        try {
+            s.setPrice(new BigDecimal(txtPrice.getText()));
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(getParent(), "Price must be a decimal number.");
+            return;
+        }
+        try {
+            s.setAvailableProducts( s.getAvailableProducts() - Integer.parseInt(txtQuantity.getText()));
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(getParent(), "Quantity must be a positive whole number.");
+            return;
+            
+        }
+        loadDataCart();
+    
+    }
+    
     private void btnRemoveItemsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRemoveItemsMouseClicked
         if(cart.getModelEntity()==null){
            JOptionPane.showMessageDialog(getRootPane(), "First you have to pick an item you want to remove from your cart.");
@@ -294,19 +405,27 @@ public class LandingPage extends javax.swing.JFrame {
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAddToCart;
+    private javax.swing.JButton btnFinish;
     private javax.swing.JButton btnRemoveItems;
     private javax.swing.JButton btnSkipToInventory;
     private javax.swing.JButton btnTrazi;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JList<ShoppingCart> lstCart;
     private javax.swing.JList<Inventory> lstEntity;
     private javax.swing.JTextField txtCondition;
+    private javax.swing.JTextField txtPrice;
+    private javax.swing.JTextField txtProductName;
+    private javax.swing.JTextField txtQuantity;
+    private javax.swing.JTextField txtSKU;
     // End of variables declaration//GEN-END:variables
 }
