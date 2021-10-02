@@ -6,9 +6,12 @@
 package comp.model;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -16,22 +19,16 @@ import javax.persistence.ManyToMany;
  */
 @Entity
 public class Inventory extends Product {
-
-    @ManyToMany
-    private List<Product> product;
     
+    @OneToOne
+    private Product product;
+
     private Integer availableProducts;
 
     public Inventory() {
     }
 
-    public List<Product> getProduct() {
-        return product;
-    }
 
-    public void setProduct(List<Product> product) {
-        this.product = product;
-    }
 
     public Integer getAvailableProducts() {
         return availableProducts;
@@ -41,7 +38,20 @@ public class Inventory extends Product {
         this.availableProducts = availableProducts;
     }
 
+    public Inventory(Integer availableProducts) {
+        this.availableProducts = availableProducts;
+    }
+
+    public Inventory(Integer availableProducts, String name, Integer sku, BigDecimal price) {
+        super(name, sku, price);
+        this.availableProducts = availableProducts;
+    }
+
+
+
+    @Override
+    public String toString() {
+        return "Product name: " + getName() + ", availableProducts: " + Integer.valueOf(getAvailableProducts());
+    }
 
 }
-
-

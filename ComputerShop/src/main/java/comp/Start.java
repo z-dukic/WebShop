@@ -16,10 +16,10 @@ public class Start {
 
     public static void main(String[] args) {
 
-        //Starting the app
+       //Starting the app
         new SplashScreen().setVisible(true);
 
         //Insert customers, products etc.
-       // HibernateSession.doWork();
+        //HibernateSession.doWork();
     }
 }

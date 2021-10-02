@@ -5,28 +5,24 @@
  */
 package comp.model;
 
-
 import java.math.BigDecimal;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
-
-
+import javax.persistence.MappedSuperclass;
+import javax.persistence.OneToOne;
 
 /**
  *
  * @author PC
  */
 @Entity
-public class Product extends EntityId{
-
+public class Product extends EntityId {
 
     private String name;
     private Integer sku;
     private BigDecimal price;
-    private Integer quantity;
 
     public String getName() {
         return name;
@@ -52,32 +48,15 @@ public class Product extends EntityId{
         this.price = price;
     }
 
-    public Integer getQuantity() {
-        return quantity;
+    public Product() {
+
     }
 
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
-    }
-
-    public Product(){
-        
-    }
-    
-    public Product(String name, Integer sku, BigDecimal price, Integer quantity) {
+    public Product(String name, Integer sku, BigDecimal price) {
         this.name = name;
         this.sku = sku;
         this.price = price;
-        this.quantity = quantity;
+
     }
 
-    
-   
-
-
-
-    
-    
-    
-    
 }

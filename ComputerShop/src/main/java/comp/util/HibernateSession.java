@@ -27,21 +27,21 @@ public class HibernateSession {
         Inventory lenovon570 = new Inventory();
         lenovon570.setName("Lenovo n570");
         lenovon570.setPrice(new BigDecimal(4999.99));
-        lenovon570.setQuantity(15);
+        lenovon570.setAvailableProducts(15);
         lenovon570.setSku(61770);
         s.save(lenovon570);
 
         Inventory lenovoLegion5 = new Inventory();
         lenovoLegion5.setName("Lenovo Legion 5");
         lenovoLegion5.setPrice(new BigDecimal(7499.99));
-        lenovoLegion5.setQuantity(10);
+        lenovoLegion5.setAvailableProducts(10);
         lenovoLegion5.setSku(61771);
         s.save(lenovoLegion5);
 
         Inventory toshibaDynabook = new Inventory();
         toshibaDynabook.setName("Toshiba Dynabook");
         toshibaDynabook.setPrice(new BigDecimal(12499.99));
-        toshibaDynabook.setQuantity(2);
+        toshibaDynabook.setAvailableProducts(2);
         toshibaDynabook.setSku(61777);
         s.save(toshibaDynabook);
 

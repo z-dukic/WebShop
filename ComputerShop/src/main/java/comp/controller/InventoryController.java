@@ -13,37 +13,38 @@ import java.util.List;
  *
  * @author PC
  */
-public class InventoryController extends Controller<Inventory>{
+public class InventoryController extends Controller<Inventory> {
 
-    
     //List inventory
     @Override
     public List<Inventory> read() {
         return session.createQuery("from Inventory").list();
+
     }
+    
+  
 
     //Create control for inventory
     @Override
     protected void controlCreate() throws ControllerException {
         controlStock(); //to-do
-        
+
     }
 
     //Update control for inventory
     @Override
     protected void controlUpdate() throws ControllerException {
-   }
+    }
 
     //Delete control for inventory
     @Override
     protected void controlDelete() throws ControllerException {
-   
-   }
+
+    }
 
     private void controlStock() {
     }
 
+ 
 
-
-    
 }
