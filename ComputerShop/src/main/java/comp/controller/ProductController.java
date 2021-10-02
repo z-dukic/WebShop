@@ -5,10 +5,52 @@
  */
 package comp.controller;
 
+import comp.model.Product;
+import comp.util.ControllerException;
+import java.util.List;
+
 /**
  *
  * @author PC
  */
-public class ProductController {
-    
+public class ProductController extends Controller<Product> {
+
+    @Override
+    public List<Product> read() {
+        return session.createQuery("from Product").list();
+    }
+
+    @Override
+    protected void controlCreate() throws ControllerException {
+        controlName();
+        controlPrice();
+        controlAvailability();
+
+    }
+
+    @Override
+    protected void controlUpdate() throws ControllerException {
+        controlName();
+        controlPrice();
+        controlAvailability();
+    }
+
+    @Override
+    protected void controlDelete() throws ControllerException {
+    }
+
+    private void controlName() {
+        //todo
+
+    }
+
+    private void controlPrice() {
+        //todo
+
+    }
+
+    private void controlAvailability() {
+        //todo
+    }
+
 }
