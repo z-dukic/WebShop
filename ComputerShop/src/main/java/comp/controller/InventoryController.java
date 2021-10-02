@@ -25,6 +25,7 @@ public class InventoryController extends Controller<Inventory>{
     //Create control for inventory
     @Override
     protected void controlCreate() throws ControllerException {
+        controlStock(); //to-do
         
     }
 
@@ -38,6 +39,9 @@ public class InventoryController extends Controller<Inventory>{
     protected void controlDelete() throws ControllerException {
    
    }
+
+    private void controlStock() {
+    }
 
 
 

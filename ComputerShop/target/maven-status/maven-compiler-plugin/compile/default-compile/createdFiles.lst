@@ -1,0 +1,5 @@
+comp\controller\Controller.class
+comp\model\EntityId.class
+comp\model\Product.class
+comp\util\ControllerException.class
+comp\controller\ProductController.class

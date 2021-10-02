@@ -60,6 +60,10 @@ public class Product extends EntityId{
         this.quantity = quantity;
     }
 
+    public Product(){
+        
+    }
+    
     public Product(String name, Integer sku, BigDecimal price, Integer quantity) {
         this.name = name;
         this.sku = sku;

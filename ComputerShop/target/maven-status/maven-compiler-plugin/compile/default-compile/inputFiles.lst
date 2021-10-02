@@ -1,4 +1,10 @@
-C:\Users\PC\Documents\NetBeansProjects\ComputerShop\src\main\java\comp\model\Product.java
-C:\Users\PC\Documents\NetBeansProjects\ComputerShop\src\main\java\comp\util\HibernateSession.java
-C:\Users\PC\Documents\NetBeansProjects\ComputerShop\src\main\java\comp\util\HibernateUtil.java
-C:\Users\PC\Documents\NetBeansProjects\ComputerShop\src\main\java\comp\Start.java
+C:\Users\PC\Desktop\WebShop\ComputerShop\src\main\java\comp\model\EntityId.java
+C:\Users\PC\Desktop\WebShop\ComputerShop\src\main\java\comp\controller\InventoryController.java
+C:\Users\PC\Desktop\WebShop\ComputerShop\src\main\java\comp\model\Inventory.java
+C:\Users\PC\Desktop\WebShop\ComputerShop\src\main\java\comp\model\Product.java
+C:\Users\PC\Desktop\WebShop\ComputerShop\src\main\java\comp\util\ControllerException.java
+C:\Users\PC\Desktop\WebShop\ComputerShop\src\main\java\comp\util\HibernateSession.java
+C:\Users\PC\Desktop\WebShop\ComputerShop\src\main\java\comp\util\HibernateUtil.java
+C:\Users\PC\Desktop\WebShop\ComputerShop\src\main\java\comp\controller\ProductController.java
+C:\Users\PC\Desktop\WebShop\ComputerShop\src\main\java\comp\Start.java
+C:\Users\PC\Desktop\WebShop\ComputerShop\src\main\java\comp\controller\Controller.java

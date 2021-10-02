@@ -6,15 +6,26 @@
 package comp.model;
 
 import java.math.BigDecimal;
+import javax.persistence.Entity;
 
 /**
  *
  * @author PC
  */
-public class Inventory extends Product{
-    
+@Entity
+public class Inventory extends Product {
+
     private Product product;
-    private int availableProducts;
+    private Integer availableProducts;
+
+    public Inventory() {
+    }
+
+    public Inventory(Product product, Integer availableProducts, String name, Integer sku, BigDecimal price, Integer quantity) {
+        super(name, sku, price, quantity);
+        this.product = product;
+        this.availableProducts = availableProducts;
+    }
 
     public Product getProduct() {
         return product;
@@ -24,23 +35,13 @@ public class Inventory extends Product{
         this.product = product;
     }
 
-    public int getAvailableProducts() {
+    public Integer getAvailableProducts() {
         return availableProducts;
     }
 
-    public void setAvailableProducts(int availableProducts) {
+    public void setAvailableProducts(Integer availableProducts) {
         this.availableProducts = availableProducts;
     }
-
-    public Inventory(Product product, int availableProducts, String name, Integer sku, BigDecimal price, Integer quantity) {
-        super(name, sku, price, quantity);
-        this.product = product;
-        this.availableProducts = availableProducts;
-    }
-    
-    
-    
-    
-    
-    
 }
+
+
