@@ -44,6 +44,7 @@
         
         <mapping class="comp.model.Product" />
         <mapping class="comp.model.Inventory" />
+        <mapping class="comp.model.ShoppingCart" />
 
         
 

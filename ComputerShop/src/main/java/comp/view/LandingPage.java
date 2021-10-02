@@ -5,17 +5,59 @@
  */
 package comp.view;
 
+import comp.controller.InventoryController;
+import comp.controller.ShoppingCartController;
+import comp.model.Inventory;
+import comp.model.ShoppingCart;
+import comp.util.ControllerException;
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author PC
  */
 public class LandingPage extends javax.swing.JFrame {
 
+    private ShoppingCartController cart;
+    private InventoryController controller;
+
     /**
      * Creates new form LandingPage
      */
     public LandingPage() {
         initComponents();
+        cart = new ShoppingCartController();
+        controller = new InventoryController();
+        loadDataInventory();
+        loadDataCart();
+    }
+
+    private void loadDataInventory() {
+        DefaultListModel<Inventory> h = new DefaultListModel<>();
+
+        controller.read().forEach(s -> {
+            h.addElement(s);
+        });
+
+        lstEntity.setModel(h);
+    }
+
+    private void loadDataCart() {
+
+        DefaultListModel<ShoppingCart> h = new DefaultListModel<>();
+
+        cart.read().forEach(s -> {
+            h.addElement(s);
+        });
+
+        lstCart.setModel(h);
+
+    }
+
+    public void setValueInEntity() {
+        var s = controller.getModelEntity();
+
     }
 
     /**
@@ -31,6 +73,16 @@ public class LandingPage extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         btnSkipToInventory = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        lstEntity = new javax.swing.JList<>();
+        jLabel3 = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
+        btnTrazi = new javax.swing.JButton();
+        txtCondition = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        btnRemoveItems = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        lstCart = new javax.swing.JList<>();
 
         jLabel2.setText("jLabel2");
 
@@ -47,30 +99,121 @@ public class LandingPage extends javax.swing.JFrame {
             }
         });
 
+        lstEntity.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                lstEntityValueChanged(evt);
+            }
+        });
+        jScrollPane3.setViewportView(lstEntity);
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel3.setText("Catalog:");
+
+        jButton3.setText("Add to cart");
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton3MouseClicked(evt);
+            }
+        });
+
+        btnTrazi.setText("Traži");
+        btnTrazi.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnTraziMouseClicked(evt);
+            }
+        });
+        btnTrazi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTraziActionPerformed(evt);
+            }
+        });
+
+        txtCondition.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtConditionActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("Finish");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        btnRemoveItems.setText("Remove item");
+        btnRemoveItems.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnRemoveItemsMouseClicked(evt);
+            }
+        });
+
+        lstCart.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        lstCart.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                lstCartValueChanged(evt);
+            }
+        });
+        jScrollPane1.setViewportView(lstCart);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 547, Short.MAX_VALUE)
-                .addComponent(jLabel4))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(26, 26, 26)
                 .addComponent(btnSkipToInventory, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jLabel1)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(txtCondition, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnTrazi, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(249, 249, 249)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 120, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel4)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnRemoveItems, javax.swing.GroupLayout.Alignment.TRAILING))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 501, Short.MAX_VALUE)
-                .addComponent(btnSkipToInventory)
-                .addGap(21, 21, 21))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnTrazi)
+                            .addComponent(txtCondition, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(11, 11, 11)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(135, Short.MAX_VALUE)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnRemoveItems)
+                        .addGap(40, 40, 40)
+                        .addComponent(jButton1)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
+                .addComponent(btnSkipToInventory))
         );
 
         pack();
@@ -78,20 +221,92 @@ public class LandingPage extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSkipToInventoryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSkipToInventoryMouseClicked
-     new InventoryView().setVisible(true);
-     dispose();
+        new InventoryView().setVisible(true);
+        dispose();
     }//GEN-LAST:event_btnSkipToInventoryMouseClicked
+
+    private void lstEntityValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstEntityValueChanged
+        if (evt.getValueIsAdjusting() || lstEntity.getSelectedValue() == null) {
+            return;
+        }
+        controller.setModelEntity(lstEntity.getSelectedValue());
+        var s = controller.getModelEntity();
+
+    
+    }//GEN-LAST:event_lstEntityValueChanged
+
+    private void btnTraziMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTraziMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnTraziMouseClicked
+
+    private void btnTraziActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTraziActionPerformed
+        //loadData();
+    }//GEN-LAST:event_btnTraziActionPerformed
+
+    private void txtConditionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtConditionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtConditionActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void lstCartValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstCartValueChanged
+        if (evt.getValueIsAdjusting() || lstCart.getSelectedValue() == null) {
+            return;
+        }
+
+        
+        var e = cart.getModelEntity();
+
+
+    }//GEN-LAST:event_lstCartValueChanged
+
+    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+        cart.setModelEntity(new ShoppingCart());
+        setValueInEntity();
+        try {
+            cart.create();
+            loadDataCart();
+        } catch (ControllerException ex) {
+            JOptionPane.showMessageDialog(getRootPane(), ex.getMessage());
+        }
+    }//GEN-LAST:event_jButton3MouseClicked
+
+    private void btnRemoveItemsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRemoveItemsMouseClicked
+        if(cart.getModelEntity()==null){
+           JOptionPane.showMessageDialog(getRootPane(), "First you have to pick an item you want to remove from your cart.");
+           return;
+       }
+        try {
+            cart.delete();
+            loadDataCart();
+        } catch (ControllerException ex) {
+            JOptionPane.showMessageDialog(getRootPane(), ex.getMessage());
+        }
+        
+        
+        
+    }//GEN-LAST:event_btnRemoveItemsMouseClicked
 
     /**
      * @param args the command line arguments
      */
-   
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnRemoveItems;
     private javax.swing.JButton btnSkipToInventory;
+    private javax.swing.JButton btnTrazi;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JList<ShoppingCart> lstCart;
+    private javax.swing.JList<Inventory> lstEntity;
+    private javax.swing.JTextField txtCondition;
     // End of variables declaration//GEN-END:variables
 }

@@ -51,6 +51,8 @@ public class Inventory extends Product {
     public String toString() {
         return "Product: " + getName() + ", AvailableProducts: " + availableProducts + ", SKU: " + getSku() + ", Price: " +getPrice() + "kn.";
     }
+    
+ 
 
      
 
