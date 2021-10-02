@@ -1,5 +1,14 @@
-comp\controller\Controller.class
+comp\util\HibernateUtil.class
+comp\view\SplashScreen.class
 comp\model\EntityId.class
+comp\Start.class
+comp\util\HibernateSession.class
+comp\view\SplashScreen$Loading.class
+comp\controller\Controller.class
 comp\model\Product.class
+comp\view\LandingPage$1.class
+comp\view\LandingPage.class
 comp\util\ControllerException.class
 comp\controller\ProductController.class
+comp\controller\InventoryController.class
+comp\model\Inventory.class

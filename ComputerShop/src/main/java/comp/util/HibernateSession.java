@@ -18,7 +18,7 @@ import org.hibernate.Session;
  */
 public class HibernateSession {
 
-    public static void odradiPosao() {
+    public static void doWork() {
 
         Session s = HibernateUtil.getSession();
 
