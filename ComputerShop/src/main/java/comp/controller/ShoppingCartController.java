@@ -5,6 +5,7 @@
  */
 package comp.controller;
 
+import comp.model.Inventory;
 import comp.model.ShoppingCart;
 import comp.util.ControllerException;
 import java.util.List;
@@ -31,5 +32,8 @@ public class ShoppingCartController extends Controller<ShoppingCart>{
     @Override
     protected void controlDelete() throws ControllerException {
   }
+
+    public void getModelEntity(Inventory selectedValue) {
+    }
     
 }

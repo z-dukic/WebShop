@@ -23,9 +23,37 @@ public class ShoppingCart extends EntityId {
     @ManyToOne
     private Product product;
 
+    @ManyToOne
+    private Inventory inventory;
+    
     private Integer howManyProducts;
-    private Integer pricePerUnit;
-    private Integer total;
+    private BigDecimal pricePerUnit;
+    private BigDecimal total;
+
+    public Inventory getInventory() {
+        return inventory;
+    }
+
+    public void setInventory(Inventory inventory) {
+        this.inventory = inventory;
+    }
+
+    public ShoppingCart() {
+
+    }
+
+    public ShoppingCart(String brojRacuna, Product product, Inventory inventory, Integer howManyProducts, BigDecimal pricePerUnit, BigDecimal total) {
+        this.brojRacuna = brojRacuna;
+        this.product = product;
+        this.inventory = inventory;
+        this.howManyProducts = howManyProducts;
+        this.pricePerUnit = pricePerUnit;
+        this.total = total;
+    }
+
+ 
+
+  
 
     public String getBrojRacuna() {
         return brojRacuna;
@@ -51,30 +79,31 @@ public class ShoppingCart extends EntityId {
         this.howManyProducts = howManyProducts;
     }
 
-    public Integer getPricePerUnit() {
+    public BigDecimal getPricePerUnit() {
         return pricePerUnit;
     }
 
-    public void setPricePerUnit(Integer pricePerUnit) {
+    public void setPricePerUnit(BigDecimal pricePerUnit) {
         this.pricePerUnit = pricePerUnit;
     }
 
-    public Integer getTotal() {
+    public BigDecimal getTotal() {
         return total;
     }
 
-    public void setTotal(Integer total) {
+    public void setTotal(BigDecimal total) {
         this.total = total;
     }
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 83 * hash + Objects.hashCode(this.brojRacuna);
-        hash = 83 * hash + Objects.hashCode(this.product);
-        hash = 83 * hash + Objects.hashCode(this.howManyProducts);
-        hash = 83 * hash + Objects.hashCode(this.pricePerUnit);
-        hash = 83 * hash + Objects.hashCode(this.total);
+        int hash = 7;
+        hash = 67 * hash + Objects.hashCode(this.brojRacuna);
+        hash = 67 * hash + Objects.hashCode(this.product);
+        hash = 67 * hash + Objects.hashCode(this.inventory);
+        hash = 67 * hash + Objects.hashCode(this.howManyProducts);
+        hash = 67 * hash + Objects.hashCode(this.pricePerUnit);
+        hash = 67 * hash + Objects.hashCode(this.total);
         return hash;
     }
 
@@ -96,6 +125,9 @@ public class ShoppingCart extends EntityId {
         if (!Objects.equals(this.product, other.product)) {
             return false;
         }
+        if (!Objects.equals(this.inventory, other.inventory)) {
+            return false;
+        }
         if (!Objects.equals(this.howManyProducts, other.howManyProducts)) {
             return false;
         }
@@ -110,16 +142,14 @@ public class ShoppingCart extends EntityId {
 
     @Override
     public String toString() {
-        return "brojRacuna: " + brojRacuna ;
+        return"Product: " + product ;
     }
 
 
-    
-
-        
-
 
     
-    
+
+  
+
 
 }
