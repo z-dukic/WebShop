@@ -47,11 +47,18 @@ public class Inventory extends Product {
         this.availableProducts = availableProducts;
     }
 
-
-
     @Override
     public String toString() {
-        return "Product name: " + getName() + ", availableProducts: " + Integer.valueOf(getAvailableProducts());
+        return "Product: " + getName() + ", AvailableProducts: " + availableProducts + ", SKU: " + getSku() + ", Price: " +getPrice() + "kn.";
     }
+
+     
+
+    
+
+
+
+   
+    
 
 }
