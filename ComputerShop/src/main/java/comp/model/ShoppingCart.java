@@ -55,11 +55,11 @@ public class ShoppingCart extends EntityId {
 
   
 
-    public String getBrojRacuna() {
+    public String getNoReceipt() {
         return brojRacuna;
     }
 
-    public void setBrojRacuna(String brojRacuna) {
+    public void ReceiptNumber(String brojRacuna) {
         this.brojRacuna = brojRacuna;
     }
 
